@@ -24,6 +24,7 @@ def cmd_init(args):
             platforms=platforms,
             dry_run=args.dry_run,
             node_version=args.node_version,
+            simple=args.simple,
         )
         if generated:
             print(f"\n🎉 Done! Generated {len(generated)} file(s).")
@@ -54,6 +55,11 @@ def main():
         "--all",
         action="store_true",
         help="Generate both GitLab CI and GitHub Actions configs",
+    )
+    init_parser.add_argument(
+        "--simple",
+        action="store_true",
+        help="Generate minimal config: install + build only (no lint/test/typecheck)",
     )
     init_parser.add_argument(
         "--node-version",

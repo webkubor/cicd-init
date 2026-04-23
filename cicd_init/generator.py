@@ -12,6 +12,7 @@ def generate(
     platforms=None,
     dry_run=False,
     node_version=None,
+    simple=False,
 ):
     """
     Generate CI/CD configuration files.
@@ -22,6 +23,7 @@ def generate(
                    Auto-detect from git remote if None.
         dry_run: If True, print config without writing files.
         node_version: Override detected Node.js major version.
+        simple: If True, generate minimal config (install + build only).
 
     Returns:
         List of generated file paths (empty if dry_run).
@@ -30,6 +32,8 @@ def generate(
 
     if node_version:
         config["node_version"] = node_version
+
+    config["simple"] = simple
 
     # Determine target platforms
     if platforms:
